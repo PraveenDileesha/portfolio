@@ -84,6 +84,9 @@ body{
     background-color: #2e5cff;
     text-decoration: none;
     border: 1px solid #2e5cff;
+    width:100px;
+    height: 20px;
+    text-align: center;
     padding: 1%;
     align-self: flex-start;
     margin-top: 5%;
@@ -144,13 +147,25 @@ body{
 
 .intro-container-inner1 .socials{
     color: black;
-    font-size: 25px;
+    font-size: 35px;
     display: flex;
     gap:15px;
 }
 
 .intro-container-inner1 .socials i:hover{
     color: #2e5cff;
+}
+
+.intro-container-inner1 .socials a {
+    color: black; /* Set default color */
+}
+
+.intro-container-inner1 .socials a:hover {
+    color: #2e5cff; /* Change color on hover */
+}
+
+.intro-container-inner1 .socials a:visited {
+    color: black; /* Set color for visited links */
 }
 
 .image-container{
