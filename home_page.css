@@ -262,3 +262,77 @@ footer{
 .mail a:hover{
     color: blue;
 }
+
+/* CSS for mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .top-container {
+        height: auto;
+        position: static;
+    }
+
+    #name-tag {
+        width: auto;
+        margin: 10px 0;
+    }
+
+    .nav-bar-area {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-bar li {
+        padding: 10px;
+    }
+
+    .content-container {
+        margin: 10% 5%;
+    }
+
+    .intro-container {
+        flex-direction: column;
+    }
+
+    .intro-container-inner1 {
+        padding-top: 0;
+        text-align: center;
+        opacity: 1;
+        transform: none;
+    }
+
+    .image-container {
+        padding-top: 0;
+        opacity: 1;
+        transform: none;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .projects {
+        margin: 0 5%;
+        flex-direction: column;
+    }
+
+    .project {
+        width: 100%;
+    }
+
+    .project .project_image_container,
+    .project .project_image_container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+}
