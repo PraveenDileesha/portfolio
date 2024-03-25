@@ -114,6 +114,10 @@ body{
     animation: slideUp 1s ease-out forwards
 }
 
+.intro-container-inner1 p{
+    text-align: justify;
+}
+
 @keyframes slideUp {
     to {
         opacity: 1;
@@ -349,5 +353,13 @@ footer{
         flex-direction: column;
         align-items: center;
         height: auto;
+    }
+
+    .content-container .links {
+        display: none; /* Hide the links class on mobile */
+    }
+
+    .socials {
+        justify-content: center;
     }
 }

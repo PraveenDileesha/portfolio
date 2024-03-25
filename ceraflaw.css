@@ -76,6 +76,25 @@ body{
     flex-grow: 1;
 }
 
+.content-container h1{
+    margin: 0;
+    font-size:50px;
+    font-family: 'Poppins', sans-serif;
+    font-optical-sizing: auto;
+    font-weight:bold;
+    font-style: normal;
+    color: black;
+}
+
+.content-container p{
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700px;
+    font-size:90%;
+    color: black;
+    margin: 0;
+}
+
 #brand{
     height: 500px;
     object-fit: cover;
@@ -109,4 +128,31 @@ footer{
     width: 100px;
     height: 100px;
     object-fit:contain;
+}
+
+.image_container {
+    display: flex;
+    padding-bottom: 20px; /* Add some space at the bottom */
+}
+
+/* Ensure images don't break out of the container */
+.image_container img {
+    width: 300px; /* Set a fixed width for images */
+    height: 300px; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure images cover their container */
+}
+
+@media screen and (max-width: 768px) {
+    .image_container {
+        display: flex; 
+        flex-direction: column; /* Change flex direction to column */
+        align-items: center; /* Align items to center vertically */
+    }
+
+    .image_container img {
+        width: 300px; /* Set a fixed width for images */
+        height: 300px; /* Maintain aspect ratio */
+        object-fit: contain; /* Ensure images cover their container */
+        margin: 0; /* Adjust margin to remove the gap */
+    }
 }
