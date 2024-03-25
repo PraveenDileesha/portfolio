@@ -283,6 +283,112 @@ footer{
 }
 
 /* CSS for mobile responsiveness */
+/*@media screen and (max-width: 768px) {
+    .top-container {
+        height: auto;
+        position: static;
+    }
+
+    #name-tag {
+        width: auto;
+    }
+
+    .nav-bar-area {
+        display: flex;
+        justify-content: right;
+    }
+
+    .nav-bar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-bar li {
+        padding: 10px;
+    }
+
+    .content-container {
+        margin: 10% 5%;
+    }
+
+    .intro-container {
+        flex-direction: column;
+    }
+
+    .intro-container-inner1 {
+        padding-top: 0;
+        text-align: center;
+        opacity: 1;
+        transform: none;
+    }
+
+    .image-container {
+        padding-top: 0;
+        opacity: 1;
+        transform: none;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .projects {
+        margin: 0 5%;
+        flex-direction: column;
+    }
+
+    .project {
+        width: 100%;
+    }
+
+    .project .project_image_container,
+    .project .project_image_container img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .content-container .links {
+        display: none; /* Hide the links class on mobile 
+    }
+
+    .socials {
+        margin-top: 5px;
+        justify-content: center;
+    }
+
+    .project .project_image_container img{
+        width: 400px;
+        height: 300px;
+    }
+
+    .project .project_image_container img:hover{
+        width: 370px;
+        height: 270px;
+    }
+
+    footer{
+        height: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700px;
+        font-size:80%;
+        color: black;
+        background-color: #fbf7f4;
+        display: flex;
+        text-align: center;
+    }
+    
+    .mail a{
+        text-decoration: none;
+        color:#2e5cff;
+    }
+    
+    .mail a:hover{
+        color: blue;
+    }
+}*/
+
 @media screen and (max-width: 768px) {
     .top-container {
         height: auto;
@@ -301,6 +407,7 @@ footer{
     .nav-bar ul {
         flex-direction: column;
         align-items: center;
+        align-self: flex-end; /* Add this line */
     }
 
     .nav-bar li {
@@ -388,3 +495,4 @@ footer{
         color: blue;
     }
 }
+
