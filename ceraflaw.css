@@ -95,6 +95,16 @@ body{
     margin: 0;
 }
 
+.content-container h2{
+    margin: 0;
+    font-size:25px;
+    font-family: 'Poppins', sans-serif;
+    font-optical-sizing: auto;
+    font-weight:bold;
+    font-style: normal;
+    color: black;
+}
+
 #brand{
     height: 500px;
     object-fit: cover;
@@ -142,6 +152,30 @@ footer{
     object-fit: contain; /* Ensure images cover their container */
 }
 
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 560px; /* Adjust based on your thumbnail size */
+    height: 300px;
+    margin: 20px 0;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    align-self:self-start;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 @media screen and (max-width: 768px) {
     .image_container {
         display: flex; 
@@ -154,5 +188,13 @@ footer{
         height: 300px; /* Maintain aspect ratio */
         object-fit: contain; /* Ensure images cover their container */
         margin: 0; /* Adjust margin to remove the gap */
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px; /* Adjust based on your thumbnail size */
+        height: 300px;
+        margin: 20px 0;
     }
 }
