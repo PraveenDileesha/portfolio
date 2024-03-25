@@ -291,12 +291,11 @@ footer{
 
     #name-tag {
         width: auto;
-        margin: 10px 0;
     }
 
     .nav-bar-area {
         display: flex;
-        justify-content: center;
+        justify-content: right;
     }
 
     .nav-bar ul {
@@ -349,17 +348,43 @@ footer{
         height: auto;
     }
 
-    .footer {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-    }
 
     .content-container .links {
         display: none; /* Hide the links class on mobile */
     }
 
     .socials {
+        margin-top: 5px;
         justify-content: center;
+    }
+
+    .project .project_image_container img{
+        width: 400px;
+        height: 300px;
+    }
+
+    .project .project_image_container img:hover{
+        width: 370px;
+        height: 270px;
+    }
+
+    footer{
+        height: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700px;
+        font-size:80%;
+        color: black;
+        background-color: #fbf7f4;
+        display: flex;
+        text-align: center;
+    }
+    
+    .mail a{
+        text-decoration: none;
+        color:#2e5cff;
+    }
+    
+    .mail a:hover{
+        color: blue;
     }
 }

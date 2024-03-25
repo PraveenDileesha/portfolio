@@ -84,45 +84,19 @@
 }
 
 @media screen and (max-width: 768px) {
-  .aboutme_container {
-      flex-direction: column;
-  }
+    .aboutme_container {
+        flex-direction: column;
+    }
 
-  .aboutme {
-      flex-direction: column;
-  }
+    .aboutme {
+        flex-direction: column;
+    }
 
-  .aboutme_text_area {
-      width: 100%;
-  }
+    .aboutme_text_area {
+        width: 100%;
+    }
 
-  .academic_info {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .academic_info img {
-      width: 100%;
-      height: auto;
-  }
-
-  .education {
-      padding-left: 0;
-      padding-right: 0;
-      width: 100%;
-  }
-
-  .education h2 {
-      font-size: 24px; /* Adjust font size for smaller screens */
-  }
-
-  .education p {
-      font-size: 80%; /* Adjust font size for smaller screens */
-  }
-
-  @media screen and (max-width: 768px) {
     .academic_info {
-        display: flex;
         flex-direction: column;
         align-items: center;
     }
@@ -130,19 +104,30 @@
     .academic_info img {
         width: 100%;
         height: auto;
-        order: 1; /* Ensure the image is displayed first */
     }
 
     .education {
-        order: 2; /* Ensure the education section is displayed after the image */
+        padding-left: 0;
+        padding-right: 0;
         width: 100%;
     }
 
+    .education h2 {
+        font-size: 24px; /* Adjust font size for smaller screens */
+    }
+
+    .education p {
+        font-size: 80%; /* Adjust font size for smaller screens */
+    }
+
     .Educational, .Hackathons_and_Events {
-        order: 3; /* Ensure the certifications sections are displayed after the education section */
         width: 100%;
     }
+
+    .extra_margin{
+      margin-top: 250px;
+    }
 }
-}
+
 
 
