@@ -1,8 +1,29 @@
+/* Light mode (default) */
 :root {
+  --bg: #fafafa;
+  --fg: #0e0e0e;
+  --muted: #666666;
+  --accent: #2563eb;
+
+  --card-bg: #fafafa;
+  --border: #e5e5e5;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
   --bg: #0e0e0e;
   --fg: #eaeaea;
   --muted: #a1a1a1;
   --accent: #5da9ff;
+
+  --card-bg: #0f0f0f;
+  --border: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
 }
 
 * {
@@ -53,7 +74,7 @@ a:hover {
 }
 
 .timeline {
-  border-left: 1px solid #222;
+  border-left: 1px solid var(--border);
   padding-left: 1.5rem;
   margin-top: 1.5rem;
 }
@@ -139,7 +160,7 @@ a:hover {
   width: 100%;
   max-width: 600px;
   height: 1px;
-  background: #222;
+  background: var(--border);
 }
 
 .copyright {
@@ -150,28 +171,37 @@ a:hover {
 /* BENTO PROJECT GRID */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
 /* Base card */
 .bento-item {
-  background: #0f0f0f;
-  border: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
+  min-height: 260px;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .bento-item:hover {
-  transform: translateY(-2px);
   border-color: #333;
+}
+
+.bento-item h2 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent);
+  font-size: 1 rem;
 }
 
 /* Large featured card */
 .bento-large {
-  grid-column: span 2;
+  min-height: 320px;
 }
 
 /* Text styles */
@@ -236,6 +266,8 @@ a:hover {
 
   .about-image {
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -259,9 +291,9 @@ a:hover {
 .skills-chips span {
   font-size: 0.85rem;
   padding: 0.35rem 0.6rem;
-  border: 1px solid #222;
+  border: 1px solid var(--border);
   border-radius: 999px;
-  background: #0f0f0f;
+  background: var(--card-bg);
   color: var(--fg);
 }
 
@@ -294,5 +326,84 @@ a:hover {
 @media (max-width: 500px) {
   .photo-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* PROJECT ACTION CHIPS */
+.project-actions {
+  margin-top: 1rem;
+}
+
+.project-chip {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.project-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+   text-decoration: none;
+}
+
+/* CERTIFICATION LINKS */
+.cert-link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cert-link:hover {
+  color: #cfcfcf;
+  text-decoration: none;
+}
+
+/* THEME TOGGLE */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+
+  font-size: 1rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    right: 20px;
+    top: 20px;
   }
 }

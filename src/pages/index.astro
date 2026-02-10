@@ -4,10 +4,17 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Praveen Dileesha">
 
   <!-- HERO -->
-  <header>
-    <h1>Praveen Dileesha</h1>
-    <p>Final-Year Software Engineering Undergraduate</p>
+  <header class="hero">
+	<div class="hero-text">
+		<h1>Praveen Dileesha</h1>
+		<p>Software Engineer | Final-Year SWE Undergraduate</p>
+	</div>
+
+	<button class="theme-toggle" aria-label="Toggle theme">
+		☼
+	</button>
   </header>
+
 
   <!-- PROFILE -->
 	<section class="about">
@@ -75,7 +82,6 @@ import Layout from "../layouts/Layout.astro";
 	</div>
 	</section>
 
-
   <!-- PROJECTS -->
 	<section>
 	<h2>Projects</h2>
@@ -83,49 +89,61 @@ import Layout from "../layouts/Layout.astro";
 	<div class="bento-grid">
 		<!-- Large feature card -->
 		<article class="bento-item bento-large">
+		<span class="bento-tag">research | Ongoing</span>
+		<h3>HyNAS-R</h3>
+		<h2 class="bento-sub">
+			An Efficient Hybrid Neural Architecture Search for Recurrent Neural Networks In NLP 
+		</h2>
+		<p>
+			Improving Neural Architecture Search for recurrent neural networks by
+			integrating zero-cost proxies with bio-inspired optimization methods to
+			significantly reduce computational cost and carbon footprint.
+		</p>
+		<p class="bento-tech">
+			Python · NAS · Optimization · Machine Learning
+		</p>
+		</article>
+
+		<!-- Medium card -->
+		<article class="bento-item">
 		<span class="bento-tag">group project</span>
 		<h3>CERAFLAW</h3>
-		<p class="bento-sub">
-			Computer Vision Defect Detection · 1 year
-		</p>
+		<h2 class="bento-sub">
+			Computer Vision Defect Detection
+		</h2>
 		<p>
-			Developed a computer vision system in collaboration with Mac Tiles
-			Sri Lanka to detect surface defects in ceramic tiles using YOLOv8.
+			Developed a computer vision system in collaboration with Mac Tiles Sri
+			Lanka to detect surface defects in ceramic tiles using YOLOv8.
 		</p>
 		<p class="bento-tech">
 			Python · Flask · YOLOv8 · Flutter · Dart
 		</p>
+
+		<div class="project-actions">
+			<a
+			href="https://youtu.be/hKdArCJtyH4"
+			target="_blank"
+			rel="noopener"
+			class="project-chip"
+			>
+			▶ Learn More
+			</a>
+		</div>
 		</article>
 
 		<!-- Medium card -->
 		<article class="bento-item">
 		<span class="bento-tag">individual</span>
 		<h3>Product Management System</h3>
-		<p class="bento-sub">
-			Java Desktop Application · 1 month
-		</p>
+		<h2 class="bento-sub">
+			Java Desktop Application
+		</h2>
 		<p>
-			Built a product ordering system using Java Swing and core OOP
-			principles including inheritance, interfaces, and abstract classes.
+			Built a product ordering system using Java Swing, applying core object-
+			oriented principles such as inheritance, interfaces, and abstraction.
 		</p>
 		<p class="bento-tech">
 			Java · Java Swing
-		</p>
-		</article>
-
-		<!-- Medium card -->
-		<article class="bento-item">
-		<span class="bento-tag">research</span>
-		<h3>Neural Architecture Search for RNNs</h3>
-		<p class="bento-sub">
-			Research Project · Ongoing
-		</p>
-		<p>
-			Improving NAS for RNNs using zero-cost proxies and bio-inspired
-			optimization to reduce computational cost and carbon footprint.
-		</p>
-		<p class="bento-tech">
-			Python · NAS · Optimization
 		</p>
 		</article>
 	</div>
@@ -163,7 +181,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
         <div class="right">
-          <span>2022 — Present</span>
+          <span>2023 — Present</span>
         </div>
       </div>
 
@@ -189,6 +207,33 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+
+  <!-- CERTIFICATIONS -->
+	<section>
+	<h2>Certifications</h2>
+
+	<p>
+		<a
+		href="https://certification.wso2.com/certificate/CID-04643704"
+		target="_blank"
+		rel="noopener"
+		class="cert-link"
+		>
+		WSO2 Certified Identity Server Practitioner — V7 (July 2024)
+		</a>
+	</p>
+
+	<p>
+		<a
+		href="https://certification.wso2.com/certificate/CID-04643704"
+		target="_blank"
+		rel="noopener"
+		class="cert-link"
+		>
+		WSO2 Certified Identity Server Developer — V7 (May 2025)
+		</a>
+	</p>
+	</section>
 
   <!-- SKILLS -->
 	<section>
@@ -224,23 +269,18 @@ import Layout from "../layouts/Layout.astro";
 	</div>
 	</section>
 
-  <!-- CERTIFICATIONS -->
-  <section>
-    <h2>Certifications</h2>
-    <p>WSO2 Certified Identity Server Practitioner — V7 (July 2024)</p>
-    <p>WSO2 Certified Identity Server Developer — V7 (May 2025)</p>
-  </section>
-
   <!-- PHOTOGRAPHY -->
-<section>
-  <h2>Photography (Mobile)</h2>
+	<section>
+	<h2>Photography (Mobile)</h2>
 
-  <div class="photo-grid">
-    <img src={`${import.meta.env.BASE_URL}images/photography/photo1.jpeg`} alt="" loading="lazy" />
-    <img src={`${import.meta.env.BASE_URL}images/photography/photo2.jpeg`} alt="" loading="lazy" />
-    <img src={`${import.meta.env.BASE_URL}images/photography/photo3.jpeg`} alt="" loading="lazy" />
-  </div>
-</section>
+	<div class="photo-grid">
+		<img src={`${import.meta.env.BASE_URL}images/photography/photo1.jpeg`} alt="" loading="lazy" />
+		<img src={`${import.meta.env.BASE_URL}images/photography/photo2.jpeg`} alt="" loading="lazy" />
+		<img src={`${import.meta.env.BASE_URL}images/photography/photo3.jpeg`} alt="" loading="lazy" />
+		<img src={`${import.meta.env.BASE_URL}images/photography/photo4.jpeg`} alt="" loading="lazy" />
+		<img src={`${import.meta.env.BASE_URL}images/photography/photo5.jpeg`} alt="" loading="lazy" />
+	</div>
+	</section>
 
 
   <!-- CONNECT -->
@@ -273,14 +313,14 @@ import Layout from "../layouts/Layout.astro";
     >
       medium
     </a>
-    <span></span>
+    <!-- <span></span>
     <a
       href="https://www.researchgate.net/"
       target="_blank"
       rel="noopener"
     >
       researchgate
-    </a>
+    </a> -->
   </nav>
 
   <div class="connect-divider"></div>

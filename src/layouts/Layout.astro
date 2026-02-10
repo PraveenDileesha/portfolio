@@ -9,6 +9,23 @@ import '/public/styles/global.css';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
   </head>
+  <script>
+	const toggle = document.querySelector('.theme-toggle');
+	const root = document.documentElement;
+
+	const saved = localStorage.getItem('theme');
+	if (saved) {
+		root.dataset.theme = saved;
+	} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		root.dataset.theme = 'dark';
+	}
+
+	toggle?.addEventListener('click', () => {
+		const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+		root.dataset.theme = next;
+		localStorage.setItem('theme', next);
+	});
+  </script>
   <body>
     <main class="container">
       <slot />
