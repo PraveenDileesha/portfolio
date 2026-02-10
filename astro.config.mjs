@@ -3,7 +3,7 @@
 
 // // https://astro.build/config
 // export default defineConfig({});
-import { defineConfig } from "astro";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
   site: "https://praveendileesha.github.io",
