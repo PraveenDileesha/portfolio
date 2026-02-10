@@ -6,6 +6,6 @@
 import { defineConfig } from "astro";
 
 export default defineConfig({
-  site: "https://<your-username>.github.io",
-  base: "/<repo-name>/"
+  site: "https://praveendileesha.github.io",
+  base: "/portfolio/",
 });
