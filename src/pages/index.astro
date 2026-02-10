@@ -1,11 +1,293 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
+<Layout title="Praveen Dileesha">
 
-<Layout>
-	<Welcome />
+  <!-- HERO -->
+  <header>
+    <h1>Praveen Dileesha</h1>
+    <p>Final-Year Software Engineering Undergraduate</p>
+  </header>
+
+  <!-- PROFILE -->
+	<section class="about">
+	<h2>About</h2>
+
+	<div class="about-grid">
+		<div class="about-image">
+		<img
+			src="/images/profilepic.jpg"
+			alt="Praveen Dileesha"
+			loading="lazy"
+		/>
+		</div>
+
+		<div class="about-text">
+		<p>
+			I believe in growing through consistent effort and curiosity, 
+			treating every line of code as an opportunity to learn and build reliable software systems that solve real-world problems.
+		</p>
+		</div>
+	</div>
+	</section>
+
+  <!-- EXPERIENCE -->
+	<section>
+	<h2>Experience</h2>
+
+	<div class="timeline">
+		<div class="row">
+		<div class="left">
+			<a
+			class="org"
+			href="https://wso2.com/"
+			target="_blank"
+			rel="noopener"
+			>
+			WSO2
+			</a>
+
+			<p class="role">Software Engineering Intern</p>
+
+			<ul class="details">
+			<li>
+				Enhanced the security advisory publication workflow by designing
+				and automating OAuth-secured processes, server-side scripting,
+				automated notifications, and ACL-based role management.
+			</li>
+			<li>
+				Built workflow-specific customizations using Business Rules, Script
+				Includes, Client Scripts, UI Policies, Scheduled Jobs, Service
+				Portal widgets, and Flow Designer workflows.
+			</li>
+			<li>
+				Supported a client migration by upgrading WSO2 Identity Server from
+				version 5.10 to 7.1, ensuring system stability and a seamless
+				transition.
+			</li>
+			</ul>
+		</div>
+
+		<div class="right">
+			<span>Jun 2024 — Jun 2025</span>
+		</div>
+		</div>
+	</div>
+	</section>
+
+
+  <!-- PROJECTS -->
+	<section>
+	<h2>Projects</h2>
+
+	<div class="bento-grid">
+		<!-- Large feature card -->
+		<article class="bento-item bento-large">
+		<span class="bento-tag">group project</span>
+		<h3>CERAFLAW</h3>
+		<p class="bento-sub">
+			Computer Vision Defect Detection · 1 year
+		</p>
+		<p>
+			Developed a computer vision system in collaboration with Mac Tiles
+			Sri Lanka to detect surface defects in ceramic tiles using YOLOv8.
+		</p>
+		<p class="bento-tech">
+			Python · Flask · YOLOv8 · Flutter · Dart
+		</p>
+		</article>
+
+		<!-- Medium card -->
+		<article class="bento-item">
+		<span class="bento-tag">individual</span>
+		<h3>Product Management System</h3>
+		<p class="bento-sub">
+			Java Desktop Application · 1 month
+		</p>
+		<p>
+			Built a product ordering system using Java Swing and core OOP
+			principles including inheritance, interfaces, and abstract classes.
+		</p>
+		<p class="bento-tech">
+			Java · Java Swing
+		</p>
+		</article>
+
+		<!-- Medium card -->
+		<article class="bento-item">
+		<span class="bento-tag">research</span>
+		<h3>Neural Architecture Search for RNNs</h3>
+		<p class="bento-sub">
+			Research Project · Ongoing
+		</p>
+		<p>
+			Improving NAS for RNNs using zero-cost proxies and bio-inspired
+			optimization to reduce computational cost and carbon footprint.
+		</p>
+		<p class="bento-tech">
+			Python · NAS · Optimization
+		</p>
+		</article>
+	</div>
+	</section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2>Education</h2>
+
+    <div class="timeline">
+      <div class="row">
+        <div class="left">
+          <p class="degree">
+            BEng (Hons) in Software Engineering
+          </p>
+          <a
+            class="org"
+            href="https://www.iit.ac.lk/"
+            target="_blank"
+            rel="noopener"
+          >
+            Informatics Institute of Technology (IIT)
+          </a>
+          <p class="muted">
+            Affiliated with
+            <a
+              class="inline-link"
+              href="https://www.westminster.ac.uk/"
+              target="_blank"
+              rel="noopener"
+            >
+              University of Westminster
+            </a>
+          </p>
+        </div>
+
+        <div class="right">
+          <span>2022 — Present</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="left">
+          <p class="degree">
+            Foundation Certificate in Higher Education — IT
+          </p>
+          <a
+            class="org"
+            href="https://www.iit.ac.lk/"
+            target="_blank"
+            rel="noopener"
+          >
+            Informatics Institute of Technology (IIT)
+          </a>
+          <p class="muted">Completed with Distinction</p>
+        </div>
+
+        <div class="right">
+          <span>2022 — 2023</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+	<section>
+	<h2>Technical Skills</h2>
+
+	<div class="skills-group">
+		<p class="skills-title">Languages</p>
+		<div class="skills-chips">
+		<span>Java</span>
+		<span>Python</span>
+		<span>JavaScript</span>
+		<span>HTML</span>
+		<span>CSS</span>
+		<span>MySQL</span>
+		</div>
+	</div>
+
+	<div class="skills-group">
+		<p class="skills-title">Tools & Frameworks</p>
+		<div class="skills-chips">
+		<span>WSO2 Identity Server 7.1</span>
+		<span>OAuth</span>
+		<span>ServiceNow</span>
+		<span>Spring Boot</span>
+		<span>AngularJS</span>
+		<span>Flask</span>
+		<span>YOLOv8</span>
+		<span>Git</span>
+		<span>IntelliJ</span>
+		<span>PyCharm</span>
+		<span>VS Code</span>
+		</div>
+	</div>
+	</section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <h2>Certifications</h2>
+    <p>WSO2 Certified Identity Server Practitioner — V7 (July 2024)</p>
+    <p>WSO2 Certified Identity Server Developer — V7 (May 2025)</p>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+<section>
+  <h2>Photography (Mobile)</h2>
+
+  <div class="photo-grid">
+    <img src="/images/photography/photo1.jpeg" alt="" loading="lazy" />
+    <img src="/images/photography/photo2.jpeg" alt="" loading="lazy" />
+    <img src="/images/photography/photo3.jpeg" alt="" loading="lazy" />
+  </div>
+</section>
+
+
+  <!-- CONNECT -->
+<section class="connect">
+  <h2>Let’s Connect</h2>
+
+  <nav class="connect-links">
+    <a href="mailto:dileeshapraveen@gmail.com">email</a>
+    <span></span>
+    <a
+      href="https://github.com/PraveenDileesha"
+      target="_blank"
+      rel="noopener"
+    >
+      github
+    </a>
+    <span></span>
+    <a
+      href="https://www.linkedin.com/in/praveen-dileesha"
+      target="_blank"
+      rel="noopener"
+    >
+      linkedin
+    </a>
+    <span></span>
+    <a
+      href="https://medium.com/@PraveenDileesha"
+      target="_blank"
+      rel="noopener"
+    >
+      medium
+    </a>
+    <span></span>
+    <a
+      href="https://www.researchgate.net/"
+      target="_blank"
+      rel="noopener"
+    >
+      researchgate
+    </a>
+  </nav>
+
+  <div class="connect-divider"></div>
+
+  <p class="copyright">
+    © 2026 Praveen Dileesha
+  </p>
+</section>
+
 </Layout>

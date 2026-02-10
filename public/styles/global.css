@@ -1,0 +1,298 @@
+:root {
+  --bg: #0e0e0e;
+  --fg: #eaeaea;
+  --muted: #a1a1a1;
+  --accent: #5da9ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Inter", "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 720px;
+  padding: 96px 24px;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--fg);
+}
+
+/* Text */
+p {
+  color: var(--muted);
+  margin: 0.5rem 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.timeline {
+  border-left: 1px solid #222;
+  padding-left: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.left {
+  max-width: 70%;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.org {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.org:hover {
+  text-decoration: underline;
+}
+
+.role {
+  margin: 0.25rem 0;
+  color: var(--muted);
+}
+
+.degree {
+  margin: 0;
+  font-weight: 500;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.connect {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.connect h2 {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.connect-links {
+  font-size: 1.1rem;
+}
+
+.connect-links a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 0.25rem;
+}
+
+.connect-links span {
+  color: var(--muted);
+  margin: 0 0.25rem;
+}
+
+.connect-links a:hover {
+  text-decoration: underline;
+}
+
+.connect-divider {
+  margin: 3rem auto 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  background: #222;
+}
+
+.copyright {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* BENTO PROJECT GRID */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Base card */
+.bento-item {
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.bento-item:hover {
+  transform: translateY(-2px);
+  border-color: #333;
+}
+
+/* Large featured card */
+.bento-large {
+  grid-column: span 2;
+}
+
+/* Text styles */
+.bento-item h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.bento-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.bento-tech {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Tag */
+.bento-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-large {
+    grid-column: span 1;
+  }
+}
+
+/* ABOUT SECTION */
+.about-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.about-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(10%);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    margin-bottom: 1rem;
+  }
+}
+
+/* SKILLS */
+.skills-group {
+  margin-top: 1.5rem;
+}
+
+.skills-title {
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-chips span {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #222;
+  border-radius: 999px;
+  background: #0f0f0f;
+  color: var(--fg);
+}
+
+/* PHOTOGRAPHY GRID */
+.photo-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.photo-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* taller than square */
+  object-fit: contain;  /* no cropping */
+  border-radius: 10px;
+  background: #0f0f0f;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+}
