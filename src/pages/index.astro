@@ -296,18 +296,58 @@ import Layout from "../layouts/Layout.astro";
 		<img src={`${import.meta.env.BASE_URL}images/photography/photo5.jpeg`} alt="" loading="lazy" />
 	</div>
 	</section>
-
-  <!-- GIT LOG -->
+	
+<!-- GIT LOG -->
 	<section>
-		<h2>Git Log</h2>
-		<div class="git-chart">
-		<img
-			src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenDileesha&bg_color=0e0e0e&color=5da9ff&line=2563eb&point=5da9ff&area=true&hide_border=true"
-  			alt="GitHub contribution chart"
-  			loading="lazy"
-		/>
-		</div>
+	<h2>Git Log</h2>
+	<div class="git-chart">
+		<canvas id="contrib-chart"></canvas>
+	</div>
 	</section>
+
+	<script>
+	async function renderChart() {
+		const res = await fetch('https://github-contributions-api.jogruber.de/v4/PraveenDileesha?y=last');
+		const data = await res.json();
+		const contributions = data.contributions;
+
+		const canvas = document.getElementById('contrib-chart');
+		const isDark = document.documentElement.dataset.theme !== 'light';
+		const emptyColor = isDark ? '#1a1a1a' : '#e5e5e5';
+		const fillColors = isDark
+		? ['#1a1a1a', '#1e3a5f', '#1d5a9e', '#2563eb', '#5da9ff']
+		: ['#e5e5e5', '#bfdbfe', '#93c5fd', '#3b82f6', '#1d4ed8'];
+
+		const cellSize = 11;
+		const gap = 3;
+		const cols = Math.ceil(contributions.length / 7);
+		const rows = 7;
+
+		canvas.width = cols * (cellSize + gap);
+		canvas.height = rows * (cellSize + gap);
+		canvas.style.width = '100%';
+
+		const ctx = canvas.getContext('2d');
+
+		contributions.forEach((day, i) => {
+		const col = Math.floor(i / 7);
+		const row = i % 7;
+		const x = col * (cellSize + gap);
+		const y = row * (cellSize + gap);
+		const level = day.level; // 0–4
+		ctx.fillStyle = fillColors[level] ?? emptyColor;
+		ctx.beginPath();
+		ctx.roundRect(x, y, cellSize, cellSize, 2);
+		ctx.fill();
+		});
+	}
+
+	renderChart();
+
+	document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+		setTimeout(renderChart, 50);
+	});
+	</script>
 
   <!-- CONNECT -->
 	<section class="connect">
