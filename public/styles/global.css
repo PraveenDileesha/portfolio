@@ -137,18 +137,23 @@ a:hover {
 }
 
 .connect-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0;
   font-size: 1.1rem;
 }
 
 .connect-links a {
   color: var(--accent);
   text-decoration: none;
-  margin: 0 0.25rem;
+  padding: 0 0.75rem;
+  border-right: 1px solid var(--muted);
+  line-height: 1;
 }
 
-.connect-links span {
-  color: var(--muted);
-  margin: 0 0.25rem;
+.connect-links a:last-child {
+  border-right: none;
 }
 
 .connect-links a:hover {
