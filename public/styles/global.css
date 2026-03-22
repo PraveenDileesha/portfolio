@@ -411,5 +411,5 @@ a:hover {
 .icon-sun  { display: block; }
 .icon-moon { display: none;  }
 
-:root.light .icon-sun  { display: none;  }
-:root.light .icon-moon { display: block; }
+[data-theme="light"] .icon-sun  { display: none;  }
+[data-theme="light"] .icon-moon { display: block; }
