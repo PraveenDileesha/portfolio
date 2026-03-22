@@ -407,3 +407,9 @@ a:hover {
     top: 20px;
   }
 }
+
+.icon-sun  { display: block; }
+.icon-moon { display: none;  }
+
+:root.light .icon-sun  { display: none;  }
+:root.light .icon-moon { display: block; }
