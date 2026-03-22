@@ -413,3 +413,32 @@ a:hover {
 
 [data-theme="light"] .icon-sun  { display: none;  }
 [data-theme="light"] .icon-moon { display: block; }
+
+/* MOBILE TIMELINE FIX */
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column-reverse;
+    gap: 0.25rem;
+  }
+  .right {
+    text-align: left;
+    flex-direction: row;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .left {
+    max-width: 100%;
+  }
+}
+
+/* MOBILE HERO TITLE FIX */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+  }
+  .hero-text p {
+    margin-top: 0.25rem;
+  }
+}
