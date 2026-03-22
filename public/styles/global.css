@@ -460,3 +460,14 @@ a:hover {
     margin-top: 0.25rem;
   }
 }
+
+/* GIT LOG */
+.git-chart {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+.git-chart img {
+  width: 100%;
+  min-width: 300px;
+  border-radius: 8px;
+}
