@@ -306,47 +306,74 @@ import Layout from "../layouts/Layout.astro";
 	</section>
 
 	<script>
-	async function renderChart() {
-		const res = await fetch('https://github-contributions-api.jogruber.de/v4/PraveenDileesha?y=last');
-		const data = await res.json();
-		const contributions = data.contributions;
+		async function renderChart() {
+			const res = await fetch('https://github-contributions-api.jogruber.de/v4/PraveenDileesha?y=last');
+			const data = await res.json();
+			const contributions = data.contributions;
 
-		const canvas = document.getElementById('contrib-chart');
-		const isDark = document.documentElement.dataset.theme !== 'light';
-		const emptyColor = isDark ? '#1a1a1a' : '#e5e5e5';
-		const fillColors = isDark
-		? ['#1a1a1a', '#1e3a5f', '#1d5a9e', '#2563eb', '#5da9ff']
-		: ['#e5e5e5', '#bfdbfe', '#93c5fd', '#3b82f6', '#1d4ed8'];
+			const canvas = document.getElementById('contrib-chart');
+			const isDark = document.documentElement.dataset.theme !== 'light';
 
-		const cellSize = 11;
-		const gap = 3;
-		const cols = Math.ceil(contributions.length / 7);
-		const rows = 7;
+			const fillColors = isDark
+			? ['#1a1a1a', '#1e3a5f', '#1d5a9e', '#2563eb', '#5da9ff']
+			: ['#e5e5e5', '#bfdbfe', '#93c5fd', '#3b82f6', '#1d4ed8'];
+			const labelColor = isDark ? '#a1a1a1' : '#666666';
 
-		canvas.width = cols * (cellSize + gap);
-		canvas.height = rows * (cellSize + gap);
-		canvas.style.width = '100%';
+			const cellSize = 11;
+			const gap = 3;
+			const step = cellSize + gap;
+			const paddingLeft = 28; // space for day labels
+			const paddingTop = 20;  // space for month labels
+			const cols = Math.ceil(contributions.length / 7);
 
-		const ctx = canvas.getContext('2d');
+			canvas.width = paddingLeft + cols * step;
+			canvas.height = paddingTop + 7 * step;
+			canvas.style.width = '100%';
 
-		contributions.forEach((day, i) => {
-		const col = Math.floor(i / 7);
-		const row = i % 7;
-		const x = col * (cellSize + gap);
-		const y = row * (cellSize + gap);
-		const level = day.level; // 0–4
-		ctx.fillStyle = fillColors[level] ?? emptyColor;
-		ctx.beginPath();
-		ctx.roundRect(x, y, cellSize, cellSize, 2);
-		ctx.fill();
+			const ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.font = '9px -apple-system, BlinkMacSystemFont, sans-serif';
+			ctx.fillStyle = labelColor;
+
+			// Day labels (Mon, Wed, Fri)
+			const dayLabels = { 1: 'Mon', 3: 'Wed', 5: 'Fri' };
+			for (const [row, label] of Object.entries(dayLabels)) {
+			ctx.fillStyle = labelColor;
+			ctx.fillText(label, 0, paddingTop + Number(row) * step + cellSize - 1);
+			}
+
+			// Month labels
+			let lastMonth = null;
+			for (let col = 0; col < cols; col++) {
+			const dayIndex = col * 7;
+			if (dayIndex >= contributions.length) break;
+			const date = new Date(contributions[dayIndex].date);
+			const month = date.toLocaleString('default', { month: 'short' });
+			if (month !== lastMonth) {
+				ctx.fillStyle = labelColor;
+				ctx.fillText(month, paddingLeft + col * step, 10);
+				lastMonth = month;
+			}
+			}
+
+			// Cells
+			contributions.forEach((day, i) => {
+			const col = Math.floor(i / 7);
+			const row = i % 7;
+			const x = paddingLeft + col * step;
+			const y = paddingTop + row * step;
+			ctx.fillStyle = fillColors[day.level] ?? fillColors[0];
+			ctx.beginPath();
+			ctx.roundRect(x, y, cellSize, cellSize, 2);
+			ctx.fill();
+			});
+		}
+
+		renderChart();
+
+		document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+			setTimeout(renderChart, 50);
 		});
-	}
-
-	renderChart();
-
-	document.querySelector('.theme-toggle')?.addEventListener('click', () => {
-		setTimeout(renderChart, 50);
-	});
 	</script>
 
   <!-- CONNECT -->
