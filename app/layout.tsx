@@ -1,15 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Software Engineer — Portfolio",
-  description:
-    "Systems, graphics, and the web. Selected work from a software engineer building real-time rendering and distributed infrastructure.",
+  title: "Praveen Dileesha",
+  description: "Sunset sea — a real-time rendered fishing boat at golden hour.",
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Software Engineer — Portfolio",
-    description: "Systems, graphics, and the web.",
+    title: "Praveen Dileesha",
+    description: "Sunset sea — a real-time rendered fishing boat at golden hour.",
     type: "website",
   },
 };
@@ -25,9 +23,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="grain antialiased">
-        <SmoothScroll />
+    <html lang="en">
+      <body className="antialiased">
         {children}
       </body>
     </html>
