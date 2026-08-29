@@ -23,33 +23,39 @@ export default function HomePage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#f4f1ee] text-[#1d2328]">
-      <section className="relative h-[72vh] min-h-[560px] overflow-hidden bg-[#dfe8ec]">
-        <BoatSunsetCanvas
-          className="!absolute inset-0"
-          frozenTime={opts.t}
-          waveAmp={opts.wave}
-        />
+    <main className="bg-[#f4f1ee] text-[#1d2328]">
+      <section className="relative flex h-dvh min-h-[560px] flex-col overflow-hidden">
+        <div className="relative min-h-0 flex-1 bg-[#dfe8ec]">
+          <BoatSunsetCanvas
+            className="!absolute inset-0"
+            frozenTime={opts.t}
+            waveAmp={opts.wave}
+          />
 
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_58%)]" />
-      </section>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_58%)]" />
+        </div>
 
-      <section id="latest-posts" className="-mt-1 bg-[#f4f1ee]">
-        <div className="mx-auto max-w-5xl px-6 pb-16 pt-2 sm:px-8 lg:px-10 lg:pb-20 lg:pt-3">
-          <div className="border-b border-[#d2c8c1] pb-6">
-            <h2 className="mb-3 text-[clamp(1.5rem,2.8vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.05em] text-[#1d2328]">
+        <div className="shrink-0 overflow-y-auto bg-[#f4f1ee] px-6 py-4 sm:px-8 sm:py-5 lg:px-10">
+          <div className="mx-auto max-w-5xl">
+            <h2 className="mb-2 text-[clamp(1.15rem,2.4vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.05em] text-[#1d2328]">
               Who is Praveen Dileesha?
             </h2>
 
-            <p className="max-w-4xl text-[0.96rem] leading-7 text-[#3a3f45] sm:text-[1.06rem]">
+            <p className="max-w-4xl text-[clamp(0.8rem,1.4vw,1.06rem)] leading-6 text-[#3a3f45] sm:leading-7">
               I&apos;m a generalist builder who chooses to explore the given subject before figuring things out.
             </p>
 
-            <p className="mt-4 max-w-5xl text-[0.96rem] leading-7 text-[#3a3f45] sm:text-[1.06rem]">
+            <p className="mt-2 max-w-5xl text-[clamp(0.8rem,1.4vw,1.06rem)] leading-6 text-[#3a3f45] sm:mt-3 sm:leading-7">
               Currently, I&apos;m a software engineering Intern at SimpleBooks, developing end-to-end while embedding AI where it matters. I just graduated in 2026 with First Class Honours in BEng Software Engineering from the University of Westminster, where my final year research centered on automated machine learning for natural language processing models. Prior to my current role, I spent a year as a Customer Success Engineer Intern on the Identity and Access Management team at WSO2.
             </p>
+          </div>
+        </div>
+      </section>
 
-            <h3 className="mt-8 text-[clamp(1.4rem,2.4vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.05em] text-[#1d2328]">
+      <section id="latest-posts" className="bg-[#f4f1ee]">
+        <div className="mx-auto max-w-5xl px-6 pb-16 pt-8 sm:px-8 lg:px-10 lg:pb-20 lg:pt-10">
+          <div className="border-b border-[#d2c8c1] pb-6">
+            <h3 className="text-[clamp(1.4rem,2.4vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.05em] text-[#1d2328]">
               Thoughts on life and technology.
             </h3>
           </div>
