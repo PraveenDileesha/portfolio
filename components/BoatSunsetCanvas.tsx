@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Canvas, createPortal, useFrame, useThree } from "@react-three/fiber";
 import { useFBO } from "@react-three/drei";
 import * as THREE from "three";
@@ -160,11 +160,19 @@ export default function BoatSunsetCanvas({
   parallax?: number;
   className?: string;
 }) {
+  // Touch devices are overwhelmingly phones/tablets, where the GPU is weakest
+  // and a retina canvas costs the most: two full-res FBO passes plus the
+  // composite, all multiplied by dpr^2. Capping to 1x there keeps first-frame
+  // and sustained render cost roughly a quarter of the desktop retina path.
+  const [maxDpr] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches ? 1 : 2,
+  );
+
   return (
     <Canvas
       className={className}
       flat // no tone mapping: the palette is already graded, by the photograph
-      dpr={[1, 2]}
+      dpr={[1, maxDpr]}
       gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
       camera={{
         fov: (FOV_Y * 180) / Math.PI,
