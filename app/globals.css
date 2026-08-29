@@ -16,6 +16,7 @@
     "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo,
     "Cascadia Code", monospace;
+  --font-display: var(--font-display-face), var(--font-sans);
 }
 
 :root {
@@ -44,6 +45,18 @@ html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/* Hero name plate: fluid size across every viewport width, not just
+   breakpoint jumps, so it scales continuously down to small phones. */
+.hero-name {
+  font-size: clamp(2.25rem, 4.5vw + 0.75rem, 5.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: #fff;
+  -webkit-text-stroke: 0.6px #000;
+  paint-order: stroke fill;
 }
 
 /* ---- Glassmorphism ---- */
