@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # --frozen-lockfile fails the build if package.json and the lockfile
+      # have drifted, so a dependency cannot be swapped without review.
+      # --ignore-scripts is belt-and-braces: pnpm-workspace.yaml already
+      # sets ignoreScripts, but CI should not depend on that being read.
+      - name: Install (frozen lockfile, no lifecycle scripts)
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      # Informational: surfaces which packages asked to run a build script so
+      # a reviewer can see when a new one appears. It does not gate the build,
+      # because ignoreScripts already blocks them unconditionally.
+      - name: Report blocked build scripts
+        run: pnpm ignored-builds || true
+
+      - name: Audit
+        run: pnpm audit --audit-level=high
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build

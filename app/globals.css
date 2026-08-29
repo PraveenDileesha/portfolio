@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ---- Design tokens (Tailwind v4 CSS-first theme) ---- */
+@theme {
+  --color-void: #090d16;
+  --color-void-2: #0d1220;
+  --color-surface: #111827;
+  --color-cyan: #38f5ff;
+  --color-violet: #8b5cf6;
+  --color-magenta: #f0f;
+  --color-mint: #5eead4;
+  --color-ink: #e7ecf5;
+  --color-muted: #7c8aa5;
+
+  --font-sans: "Inter var", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo,
+    "Cascadia Code", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-void);
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Lenis drives scroll position itself; never let the UA smooth-scroll too. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---- Glassmorphism ---- */
+.glass {
+  background: linear-gradient(
+    145deg,
+    rgb(255 255 255 / 7%) 0%,
+    rgb(255 255 255 / 2%) 55%,
+    rgb(255 255 255 / 4%) 100%
+  );
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 9%);
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 8%) inset,
+    0 24px 60px -20px rgb(0 0 0 / 80%);
+}
+
+/* Animated conic border used on hover for project cards. */
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--ring-angle, 0deg),
+    transparent 0deg,
+    var(--color-cyan) 60deg,
+    var(--color-violet) 140deg,
+    transparent 220deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.glow-ring:hover::before {
+  opacity: 1;
+  animation: ring-spin 4s linear infinite;
+}
+
+@property --ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ring-spin {
+  to {
+    --ring-angle: 360deg;
+  }
+}
+
+/* Fine grain overlay to kill banding on large dark gradients. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: repeating-radial-gradient(
+    circle at 0 0,
+    #fff 0,
+    #000 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: var(--color-cyan);
+  color: var(--color-void);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2a42;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b3b5c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

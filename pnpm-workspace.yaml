@@ -1,0 +1,6 @@
+ignoreScripts: true
+blockExoticSubdeps: true
+minimumReleaseAge: 1440
+saveExact: true
+preferFrozenLockfile: true
+onlyBuiltDependencies: []
