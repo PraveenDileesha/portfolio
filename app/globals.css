@@ -1,4 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Miss+Fajardose&display=swap");
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.miss-fajardose-regular {
+  font-family: "Miss Fajardose", "Georgia", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.hero-title {
+  font-family: "Miss Fajardose", "Georgia", serif;
+  letter-spacing: 0.02em;
+  text-shadow: 0 8px 26px rgb(13 17 18 / 22%);
+}
 
 /* ---- Design tokens (Tailwind v4 CSS-first theme) ---- */
 @theme {
