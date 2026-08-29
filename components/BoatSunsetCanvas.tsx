@@ -174,6 +174,7 @@ export default function BoatSunsetCanvas({
       flat // no tone mapping: the palette is already graded, by the photograph
       dpr={[1, maxDpr]}
       gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+      style={{ background: "#f4f1ee" }}
       camera={{
         fov: (FOV_Y * 180) / Math.PI,
         near: 0.5,
@@ -183,6 +184,7 @@ export default function BoatSunsetCanvas({
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.NoToneMapping;
         gl.outputColorSpace = THREE.SRGBColorSpace;
+        gl.setClearColor("#f4f1ee", 1);
       }}
     >
       <Scene waveAmp={waveAmp} frozenTime={frozenTime} parallax={parallax} />

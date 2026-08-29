@@ -22,8 +22,10 @@ const BEAM_HALF = 1.15;
 
 const CABIN_X0 = -HALF + 72 * PX;
 const CABIN_X1 = -HALF + 196 * PX;
-const RACK_X0 = -HALF + 60 * PX;
-const RACK_X1 = -HALF + 176 * PX;
+// Inset symmetrically from the cabin footprint so the rack sits centred on
+// the roof instead of overhanging one end and falling short of the other.
+const RACK_X0 = CABIN_X0 + 4 * PX;
+const RACK_X1 = CABIN_X1 - 4 * PX;
 const MAST_X = -HALF + 168 * PX;
 
 /** Interpolate a table of [t, value] control points. */
@@ -235,8 +237,8 @@ const HULL_FRAG = /* glsl */ `
     float plankTone = (sin(plankIdx * 9.27 + 2.1) * 0.5 + 0.5) * 0.03 - 0.015;
 
     // --- 2. Color Layers from Description ---
-    // Light blue border along upper sheer strake (vibrant marine blue)
-    vec3 colLightBlue = vec3(0.20, 0.68, 0.85);
+    // Light blue border along upper sheer strake - matches the cabin's #33aed9
+    vec3 colLightBlue = vec3(0.15, 0.50, 0.64);
     // Faded white base hull paint
     vec3 colWhite = vec3(0.75, 0.72, 0.67);
     // Dark twilight shadow tint coming across the left corner / stern
@@ -286,6 +288,14 @@ const HULL_FRAG = /* glsl */ `
     ao = mix(0.40, 1.0, ao);
 
     vec3 finalCol = baseCol * (ambLight + skyLight + seaLight) * ao + rimLight;
+    // The sheer strake must read as the exact same blue as the cabin walls,
+    // but the hull's seam darkening, grain, sea-bounce light and waterline
+    // shadow all shift its shade away from that. So for this band, light the
+    // pure cabin-matching hue with the cabin shader's own recipe (ambient +
+    // sky only, no seamDark/grain/seaLight/ao) instead of the hull's.
+    vec3 cabinSkyLight = vec3(0.24, 0.32, 0.40) * skyDiff * 0.18;
+    vec3 cabinMatchCol = colLightBlue * (ambLight + cabinSkyLight) + rimLight;
+    finalCol = mix(finalCol, cabinMatchCol, isBlue);
     gl_FragColor = vec4(finalCol, 1.0);
   }
 `;
@@ -374,26 +384,6 @@ const WINDOW_FRAG = /* glsl */ `
   }
 `;
 
-/** Registration Plate Shader (BTh-85379-TS badge) */
-const PLATE_FRAG = /* glsl */ `
-  precision highp float;
-  varying vec2 vUv;
-  varying float vWorldY;
-  uniform float uClipSign;
-
-  void main() {
-    if (vWorldY * uClipSign < 0.0) discard;
-    vec3 plateBg = vec3(0.72, 0.58, 0.30);
-    float border = smoothstep(0.0, 0.08, vUv.x) * smoothstep(1.0, 0.92, vUv.x)
-                 * smoothstep(0.0, 0.12, vUv.y) * smoothstep(1.0, 0.88, vUv.y);
-    float textLines = sin(vUv.x * 38.0) * sin(vUv.y * 18.0);
-    float isText = smoothstep(0.2, 0.5, textLines) * (1.0 - smoothstep(0.25, 0.75, abs(vUv.y - 0.5)));
-    vec3 col = mix(vec3(0.25, 0.20, 0.15), plateBg, border);
-    col = mix(col, vec3(0.28, 0.20, 0.12), isText * 0.70);
-    gl_FragColor = vec4(col, 1.0);
-  }
-`;
-
 function useBoatMaterial(fragShader: string, uniforms: Record<string, { value: unknown }> = {}) {
   return useMemo(() => {
     return new THREE.ShaderMaterial({
@@ -426,7 +416,7 @@ export default function Boat() {
   // Light blue inner cockpit / deck
   const deckMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#258eb5") } });
   // Light marine blue chamber (cabin with windows)
-  const cabinBlueMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#33aed9") } });
+  const cabinBlueMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#2680a3") } });
   // Red borders on the roof and gunwale (more vivid red)
   const roofTrimMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#cc1e10") } });
   // Sun-faded roof canopy top
@@ -437,9 +427,8 @@ export default function Boat() {
   const darkMetalMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#1e1c1a") } });
   // Red flag on mast
   const flagMat = useBoatMaterial(CABIN_FRAG, { uColor: { value: new THREE.Color("#8a261a") } });
-  // Glowing windows & plate
+  // Glowing windows
   const windowMat = useBoatMaterial(WINDOW_FRAG);
-  const plateMat = useBoatMaterial(PLATE_FRAG);
 
   // 3 Mooring ropes from the bow plunging gracefully into the water
   const ropes = useMemo(
@@ -457,24 +446,20 @@ export default function Boat() {
   const rackLen = RACK_X1 - RACK_X0;
   const rackMid = (RACK_X0 + RACK_X1) / 2;
 
-  // Window band (7 rectangular panes along wheelhouse side)
+  // Window band (7 square panes along wheelhouse side)
   const windowPanes = useMemo(() => {
     const panes: number[] = [];
     const n = 7;
     for (let i = 0; i < n; i++) panes.push(CABIN_X0 + cabinLen * ((i + 0.62) / (n + 0.25)));
     return panes;
   }, [cabinLen]);
+  const winSize = cabinH * 0.34;
 
   return (
     <group>
       {/* 1. Main Hull & Deck */}
       <mesh geometry={hull} material={hullMat} />
       <mesh geometry={deck} material={deckMat} />
-
-      {/* Red gunwale trim accent along sheer */}
-      <mesh material={roofTrimMat} position={[-HALF + L * 0.48, FREEBOARD + 0.01, 0]}>
-        <boxGeometry args={[L * 0.62, 0.03, BEAM_HALF * 1.50]} />
-      </mesh>
 
       {/* 2. Wheelhouse Structure in Faded Light Blue */}
       {/* Lower cabin base */}
@@ -502,14 +487,14 @@ export default function Boat() {
               position={[x, FREEBOARD + cabinH * 0.59, s * (BEAM_HALF * 0.692)]}
               rotation={[0, s > 0 ? 0 : Math.PI, 0]}
             >
-              <planeGeometry args={[cabinLen / 10.8, cabinH * 0.36]} />
+              <planeGeometry args={[winSize, winSize]} />
             </mesh>
-            {/* Mullion post between windows */}
+            {/* Mullion post between windows - sits clear of the window edge so it doesn't bite into the pane */}
             <mesh
               material={cabinBlueMat}
-              position={[x + cabinLen / 21.6, FREEBOARD + cabinH * 0.59, s * (BEAM_HALF * 0.694)]}
+              position={[x + winSize / 2 + 0.04, FREEBOARD + cabinH * 0.59, s * (BEAM_HALF * 0.694)]}
             >
-              <boxGeometry args={[0.04, cabinH * 0.38, 0.02]} />
+              <boxGeometry args={[0.08, winSize, 0.02]} />
             </mesh>
           </group>
         )),
@@ -526,11 +511,6 @@ export default function Boat() {
           <planeGeometry args={[BEAM_HALF * 0.30, cabinH * 0.36]} />
         </mesh>
       ))}
-
-      {/* Registration plate "BTh-85379-TS" below front-right window */}
-      <mesh material={plateMat} position={[CABIN_X1 - 0.16, FREEBOARD + cabinH * 0.24, BEAM_HALF * 0.698]}>
-        <planeGeometry args={[0.72, 0.20]} />
-      </mesh>
 
       {/* 3. Cabin Roof with Red Trim Overhang */}
       <mesh material={roofTrimMat} position={[cabinMid, CABIN_TOP + 0.02, 0]}>

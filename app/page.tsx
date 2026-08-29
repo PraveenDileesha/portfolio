@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const BoatSunsetCanvas = dynamic(() => import("@/components/BoatSunsetCanvas"), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-[#090d16]" />,
+  loading: () => <div className="absolute inset-0 bg-[#f4f1ee]" />,
 });
 
 export default function HomePage() {
