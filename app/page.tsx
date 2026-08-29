@@ -29,9 +29,6 @@ export default function HomePage() {
         frozenTime={opts.t}
         waveAmp={opts.wave}
       />
-      <h1 className="hero-name pointer-events-none absolute inset-x-0 top-[6%] px-4 text-left font-display sm:px-8">
-        Praveen Dileesha
-      </h1>
     </main>
   );
 }
